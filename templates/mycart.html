@@ -1,0 +1,65 @@
+{% extends 'usrbase.html' %}
+{% block farmer %}active{% endblock %}
+{% load static %}
+{% block body %}
+      <!-- End Side Menu -->
+    
+    <!-- End Navigation -->
+    <title>CART</title>
+<div class="container mt-3 p-3">
+    {% for i in st %}
+  <div class="card border border-2 border-secondary" style="margin:10px;width:330px;display: inline-block;vertical-align: top;height:350px;overflow: auto;background-color:white ">
+    <div class="card-body me-5">
+      <form method="post">
+        {% csrf_token %}
+      <h2 class="card-title"><b>{{i.cartitm.name}}</b></h2>
+      <img class="card-img-top rounded mb-2" src="{{i.cartitm.image.url}}" alt="Card image" style="width:100px">
+      <h2 class="card-title">{{i.cartitm.description}}</h2>
+      <h2 class="card-title btn mycolor d-inline m-3 p-1">Price:{{i.tprice}}</h2><br>
+      
+      <!-- <h2><input type="date" name="date" placeholder="Date" id="da"></h2> -->
+      <h2 class="card-title btn mycolor d-inline m-3 p-1">Quantity:{{i.count}}
+      <div class="input-group mb-3" style="max-width: 120px;">
+        <div class="input-group-prepend" >
+          <a href="minuscart" class="btn btn-outline-primary" style="font-size: 14px;">&minus;</a>
+        </div>
+        <input type="text" class="form-control text-center" value="#" placeholder=""
+          aria-label="Example text with button addon" aria-describedby="button-addon1" disabled style="font-size: 15px;">
+        <div class="input-group-append">
+          <a href="pluscart" class="btn btn-outline-primary" style="font-size: 14px;">&plus;</a>
+        </div>
+      </div>
+    </h2>
+    </form>
+    </div>
+  </div>
+  {% endfor %}
+  <br>
+</div>
+{% endblock %}
+
+
+
+
+
+ <!-- <a href="mycart/{{i.1}}"></a> -->
+<!-- <style>
+    div{
+        color: black;
+        font-size: large;
+    }
+</style> -->
+<!-- <div>
+<table border="2" style="margin-left:100px;">
+    <tr><th>NAME</th> <th>IMAGE</th> <th>DESCRIPTION</th> <th>PRICE</th></tr>
+    {% for i in st %}
+    <tr>
+        <td>{{i.cartitm.name}}</td>
+        <td><img class="card-img-top rounded mb-2" src="{{i.cartitm.image.url}}" alt="Card image" style="width:100px"></td>      
+        <td>{{i.cartitm.description}}</td>
+        <td>{{i.cartitm.price}}</td>      
+    </tr>
+    {% endfor %}
+</table> -->
+<!-- <br><hr style="background-color: red;height: 2px;"> -->
+<!-- </div> -->

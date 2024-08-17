@@ -1,0 +1,48 @@
+{% extends 'BASEE.html' %}
+{% block farmer %}active{% endblock %}
+{% load static %}
+{% block body %}
+      <!-- End Side Menu -->
+    
+    <!-- End Navigation -->
+<style>
+  .mycolor{
+    background-color: #ff7c19;
+  }
+</style>
+   <!-- <h1>hello-{{request.session.farmer.name}}</h1> -->
+    <!-- <h1>Products</h1> -->
+    <div class="top-search">
+      <div class="container">
+          <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-search" name="srch"></i></span>
+              <input type="text" class="form-control" placeholder="Search" >
+              <!-- <span class="input-group-addon fa fa-check-circle"></span> -->
+              <button ><i class="fa fa-check-circle" name="btn"></i></button>
+              <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+          </div>
+      </div>
+  </div>
+<div class="container mt-3 p-3">
+    {% for i in st %}
+  <div class="card border border-2 border-secondary" style="margin:10px;width:300px;display: inline-block;vertical-align: top;height:400px;overflow: auto;background-color:white ">
+    <div class="card-body me-5">
+      <form method="post">
+        {% csrf_token %}
+      <h2 class="card-title"><b>{{i.name}}</b></h2>
+      <a href="usrdisplay2/{{i.pk}}"><img class="card-img-top rounded mb-2" src="{{i.image.url}}" alt="Card image" style="width:150px;height:125px;"></a><br><br>
+      <!-- <h2 class="card-title">Description:{{i.description}}</h2> -->
+      <h2 class="card-title">Price:{{i.price}}</h2>
+      {% if i.name in itms %}
+      <h4 class="card-title btn btn-success m-3 p-2 mt-4"><a href="mycart1" class="text-light">View cart</a></h4>
+      {% else %}
+      <h4 class="card-title btn btn-success m-3 p-2 mt-4"><a href="addtocart/{{i.pk}}" class="text-light">Add to cart</a></h4>
+      {% endif %}
+      <h4 class="card-title btn btn-warning m-3 p-2 mt-4"><a href="buynow/{{i.pk}}" class="text-light">Buy Now</a></h4>
+    </form>
+    </div>  
+  </div>
+  {% endfor %}
+  <br>
+</div>
+{% endblock %}
